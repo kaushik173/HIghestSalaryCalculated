@@ -1,12 +1,12 @@
 
 --1.create database
-create database student
+create database Employee
 
 --2.use database
-use student
+use Employee
 
 --3.create table in database
-CREATE TABLE Student(
+CREATE TABLE Employee(
 	Id int NOT NULL,
 	FirstName varchar(50) NULL,
 	LastName varchar(50) NULL,
@@ -14,7 +14,7 @@ CREATE TABLE Student(
 	Primary Key(Id)
 )
 --4.insert records in table 
-insert into Student 
+insert into Employee 
 values(1,'manager','manage',25000.00),
       (2,'developer','develop',15000.00),
 	  (3,'tester','test',10000.00),
@@ -22,28 +22,28 @@ values(1,'manager','manage',25000.00),
 	  (5,'User','use',5000.00)
 
 --5.get all record
-select * from Student;
+select * from Employee;
 
 --write a query to find highest salary or particular highest salary
 --1 way
-select max(Salary) from student
+select max(Salary) from Employee
 
 --2 way
-select * from Student as s1 where 2 =
-(select COUNT(*) from Student as s2 where s1.Salary <= s2.Salary)
+select * from Employee as e1 where 2 =
+(select COUNT(*) from Employee as e2 where e1.Salary <= e2.Salary)
 
 --3 way
 select top 1 * from
-(select top 2 * from Student order by Salary desc) temp order by Salary
+(select top 2 * from Employee order by Salary desc) temp order by Salary
 
 --4 way
 select * from 
-(select *,ROW_NUMBER() over (order by salary desc) as rowNumber from Student)temp where rowNumber = 2
+(select *,ROW_NUMBER() over (order by salary desc) as rowNumber from Employee)temp where rowNumber = 2
 
 --5 way proper work if duplicate record comes
 select * from 
-(select *,DENSE_RANK() over (order by salary desc) as rowNumber from Student)temp where rowNumber = 2
+(select *,DENSE_RANK() over (order by salary desc) as rowNumber from Employee)temp where rowNumber = 2
 
 --6 way not work in sql
-select * from Student order by Salary desc limit 0,1
+select * from Employee order by Salary desc limit 0,1
 
