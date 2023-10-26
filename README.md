@@ -1,1 +1,1 @@
-# HIghestSalaryCalculated
+# HIghestSalaryCalculatedQuery
