@@ -47,3 +47,10 @@ select * from
 --6 way not work in sql
 select * from Employee order by Salary desc limit 0,1
 
+--7 how to get 50 percentage records from table
+SELECT * FROM 
+(
+  SELECT *, ROW_NUMBER() OVER (ORDER BY id) AS rid
+  FROM sales
+) AS temp
+WHERE rid <= (SELECT CEIL(COUNT(*) / 2) FROM sales);
